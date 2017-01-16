@@ -10,7 +10,7 @@
   - [ ] [#10 偽装行動 一覧・削除](https://github.com/YosukeSasaoka/kamei-api-server/issues/10)
   - [ ] [#11 偽装対象のユーザーのリストを提供する](https://github.com/YosukeSasaoka/kamei-api-server/issues/11)
   - [ ] [#12 偽装情報の登録APIを提供する](https://github.com/YosukeSasaoka/kamei-api-server/issues/12)
-  - [ ] [#13 偽装情報の更新APIを提供する](https://github.com/YosukeSasaoka/kamei-api-server/issues/13)
+  - [ ] [#13 偽装情報の更新APIを提供する](https://github.com/YosukeSasaoka/kamei-api-server/issues/13)
 - [ ] 一般ユーザー接近検知機能(2/17)
   - [ ] [#14 位置情報からユーザー間の距離を算出](https://github.com/YosukeSasaoka/kamei-api-server/issues/14)
   - [ ] [#15 一般ユーザーの接近通知を送信する](https://github.com/YosukeSasaoka/kamei-api-server/issues/15)
