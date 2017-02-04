@@ -18,6 +18,7 @@ module API
       end
 
       mount API::V1::UserApi
+      mount API::V1::GeolocationApi
     end
   end
 end
