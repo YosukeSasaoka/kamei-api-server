@@ -19,6 +19,10 @@ module API
 
       mount API::V1::UserApi
       mount API::V1::GeolocationApi
+      
+      if defined? GrapeSwaggerRails
+        add_swagger_documentation
+      end
     end
   end
 end

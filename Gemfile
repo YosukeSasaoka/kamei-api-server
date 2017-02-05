@@ -40,6 +40,9 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
+
+  gem 'grape-swagger', '0.25.3'
+  gem 'grape-swagger-rails'
 end
 
 group :development do
@@ -56,3 +59,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # api
 gem 'grape'
+gem 'grape-entity', '0.6.0'
