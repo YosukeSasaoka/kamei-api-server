@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170122131028) do
+ActiveRecord::Schema.define(version: 20170205142706) do
 
   create_table "api_keys", force: :cascade do |t|
     t.string   "access_token",             null: false
@@ -24,13 +24,11 @@ ActiveRecord::Schema.define(version: 20170122131028) do
   end
 
   create_table "geolocations", force: :cascade do |t|
-    t.integer  "user_id",                             null: false
     t.decimal  "latitude",   precision: 11, scale: 8, null: false
     t.decimal  "longitude",  precision: 11, scale: 8, null: false
     t.datetime "fetch_time",                          null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["user_id"], name: "index_geolocations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
