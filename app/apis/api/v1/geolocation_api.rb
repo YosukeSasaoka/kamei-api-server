@@ -15,8 +15,7 @@ module API
         post do
           authenticate!
           
-          geolocation = Geolocation.new( user_id: @current_user.id,
-                                         latitude: params[:latitude],
+          geolocation = Geolocation.new( latitude: params[:latitude],
                                          longitude: params[:longitude],
                                          fetch_time: DateTime.now)
           geolocation.save!
