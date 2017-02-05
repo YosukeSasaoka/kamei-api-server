@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170205142706) do
+ActiveRecord::Schema.define(version: 20170205153558) do
 
   create_table "api_keys", force: :cascade do |t|
     t.string   "access_token",             null: false
@@ -29,6 +29,28 @@ ActiveRecord::Schema.define(version: 20170205142706) do
     t.datetime "fetch_time",                          null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+  end
+
+  create_table "special_user_geolocations", force: :cascade do |t|
+    t.integer "special_user_id", null: false
+    t.integer "geolocation_id",  null: false
+    t.index ["geolocation_id"], name: "index_special_user_geolocations_on_geolocation_id"
+    t.index ["special_user_id"], name: "index_special_user_geolocations_on_special_user_id"
+  end
+
+  create_table "special_users", force: :cascade do |t|
+    t.integer "user_id",         null: false
+    t.integer "related_user_id", null: false
+    t.boolean "disguising",      null: false
+    t.index ["related_user_id"], name: "index_special_users_on_related_user_id"
+    t.index ["user_id"], name: "index_special_users_on_user_id"
+  end
+
+  create_table "user_geolocations", force: :cascade do |t|
+    t.integer "user_id",        null: false
+    t.integer "geolocation_id", null: false
+    t.index ["geolocation_id"], name: "index_user_geolocations_on_geolocation_id"
+    t.index ["user_id"], name: "index_user_geolocations_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

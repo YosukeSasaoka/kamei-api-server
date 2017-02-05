@@ -1,0 +1,2 @@
+class SpecialUserGeolocation < ApplicationRecord
+end
