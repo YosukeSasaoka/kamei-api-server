@@ -43,6 +43,8 @@ group :development, :test do
 
   gem 'grape-swagger', '0.25.3'
   gem 'grape-swagger-rails'
+
+  gem 'rack-cors', :require => 'rack/cors'
 end
 
 group :development do
