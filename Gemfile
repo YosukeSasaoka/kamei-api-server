@@ -36,7 +36,15 @@ gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
+
+  gem 'grape-swagger', '0.25.3'
+  gem 'grape-swagger-rails'
+
+  gem 'rack-cors', :require => 'rack/cors'
 end
 
 group :development do
@@ -53,3 +61,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # api
 gem 'grape'
+gem 'grape-entity', '0.6.0'

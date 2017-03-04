@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206164238) do
+ActiveRecord::Schema.define(version: 20170209203709) do
 
   create_table "api_keys", force: :cascade do |t|
     t.string   "access_token",             null: false
@@ -23,12 +23,42 @@ ActiveRecord::Schema.define(version: 20161206164238) do
     t.index ["user_id"], name: "index_api_keys_on_user_id"
   end
 
+  create_table "geolocations", force: :cascade do |t|
+    t.float    "latitude",   null: false
+    t.float    "longitude",  null: false
+    t.datetime "fetch_time", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "special_users", force: :cascade do |t|
+    t.integer "user_id",         null: false
+    t.integer "related_user_id", null: false
+    t.boolean "disguising",      null: false
+    t.index ["related_user_id"], name: "index_special_users_on_related_user_id"
+    t.index ["user_id"], name: "index_special_users_on_user_id"
+  end
+
+  create_table "special_users_geolocations", id: false, force: :cascade do |t|
+    t.integer "special_user_id", null: false
+    t.integer "geolocation_id",  null: false
+    t.index ["geolocation_id"], name: "index_special_users_geolocations_on_geolocation_id"
+    t.index ["special_user_id"], name: "index_special_users_geolocations_on_special_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "uuid",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "name"
     t.index ["uuid"], name: "index_users_on_uuid", unique: true
+  end
+
+  create_table "users_geolocations", id: false, force: :cascade do |t|
+    t.integer "user_id",        null: false
+    t.integer "geolocation_id", null: false
+    t.index ["geolocation_id"], name: "index_users_geolocations_on_geolocation_id"
+    t.index ["user_id"], name: "index_users_geolocations_on_user_id"
   end
 
 end
