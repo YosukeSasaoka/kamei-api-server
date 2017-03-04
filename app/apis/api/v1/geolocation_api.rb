@@ -13,7 +13,7 @@ module API
         get '/mine' do
           authenticate!
           
-          geolocation = @current_user.geolocations.select("latitude, longitude").order("fetch_time DESC").first
+          geolocation = @current_user.geolocations.select("latitude, longitude").latest
           
           geolocations = [{
             name: @current_user.name,
@@ -24,7 +24,7 @@ module API
           if @current_user.is_special?
             sp_users = SpecialUser.where(user_id: @current_user.id).where(disguising: true)
             sp_users.each do |sp_user|
-              geolocation = sp_user.geolocations.select("latitude, longitude").where('fetch_time < ?', DateTime.now ).order("fetch_time DESC").first
+              geolocation = sp_user.geolocations.select("latitude, longitude").current.latest
               geolocations.concat([
                 {
                   name: @current_user.name + '(For ' +  User.find_by_id(sp_user.related_user_id).name + ')',
@@ -51,7 +51,7 @@ module API
             special_users = @current_user.special_users
             special_users.each do |special_user|
               related_user = special_user.related_user
-              geolocation = related_user.geolocations.select("latitude, longitude").order("fetch_time DESC").first
+              geolocation = related_user.geolocations.select("latitude, longitude").latest
               geolocations.concat([
                 {
                   name: related_user.name,
@@ -62,9 +62,9 @@ module API
           else
             special_user = @current_user.related_users.first
             if special_user.is_disguising?
-              geolocation = special_user.geolocations.select("latitude, longitude").where('fetch_time < ?', DateTime.now ).order("fetch_time DESC").first
+              geolocation = special_user.geolocations.select("latitude, longitude").current.latest
             else
-              geolocation = special_user.user.geolocations.select("latitude, longitude").order("fetch_time DESC").first
+              geolocation = special_user.user.geolocations.select("latitude, longitude").latest
             end
             geolocations.concat([
               {
